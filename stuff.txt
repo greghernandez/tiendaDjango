@@ -1,0 +1,7 @@
+(entorno-django) C:\Users\GregH\entornos-virtuales\proyectos\tiendaDjango>manage.py runserver --settings=tienda.local_settings
+git pull
+
+viernes 23
+mumm960623@gmail.com
+asunto: Proyecto Final EXEDIENTE
+LINK GIT Y ANYWARE
