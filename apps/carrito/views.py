@@ -10,3 +10,9 @@ def carrito(request):
 		'carrito': Carrito.objects.all()
 	}
 	return render(request, 'carrito/index.html', contexto)
+
+def comprar(request, idUsuario):
+	listaCompra = Carrito.objects.get(usuario = idUsuario)
+	listaCompra.delete()
+	return redirect('Productos:listado');
+
