@@ -6,13 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{% block title %} Proyecto {% endblock %}</title>
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	{% block extracss%}{% endblock %}
 </head>
 <body>
 	{% block header %}
     <div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="container">
-        <a href="../" class="navbar-brand">Tienda</a>
+        <a href="/" class="navbar-brand">Tienda</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,24 +23,26 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes" aria-expanded="false">Categorias <span class="caret"></span></a>
               <div class="dropdown-menu" aria-labelledby="themes">
                 <a class="dropdown-item" href="../default/">Default</a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../cerulean/">Cerulean</a>
-                <a class="dropdown-item" href="../cosmo/">Cosmo</a>
-                <a class="dropdown-item" href="../cyborg/">Cyborg</a>
-                <a class="dropdown-item" href="../darkly/">Darkly</a>
-                <a class="dropdown-item" href="../flatly/">Flatly</a>
-                <a class="dropdown-item" href="../journal/">Journal</a>
-                <a class="dropdown-item" href="../litera/">Litera</a>
               </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../help/">Productos</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/carrito">carrito</a>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://builtwithbootstrap.com/" target="_blank">Iniciar Sesión</a>
+              {% block login %}
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}" target="">Cerrar Sesión</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}" target="">Iniciar Sesión</a>
+              {% endif %}
+              {% endblock %}
             </li>
           </ul>
 
@@ -73,8 +76,12 @@
 
     </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="{% static 'js/bootstrap.js' %}""></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.js' %}""></script> 
   
 
 </body>

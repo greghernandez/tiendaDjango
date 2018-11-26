@@ -51,4 +51,31 @@ class CategoriaForm(forms.ModelForm):
 			'descripcion' :forms.TextInput(attrs={'class': 'form-control'}),
 			'fechaDeRegistro': forms.TextInput(attrs={'class': 'form-control'}),
 		}
+
+class ProductoCarritoForm(forms.ModelForm):
+	class Meta:
+		model = Producto
+		fields = [
+			'nombre',
+			'codigo',
+			'caracteristicas',
+			'precio',
+			'fechaDeRegistro'
+		]
+
+		labels = {
+			'nombre' : 'Nombre',
+			'codigo' : 'Código',
+			'caracteristicas' : 'Características',
+			'precio' : 'Precio',
+			'fechaDeRegistro' : 'Fecha de registro'
+		}
+
+		widgets = {
+			'nombre' : forms.TextInput(attrs={'readonly': '', 'class': 'form-control'}),
+			'codigo' : forms.TextInput(attrs={'readonly': '', 'class': 'form-control'}),
+			'caracteristicas' : forms.TextInput(attrs={'readonly': '', 'class': 'form-control'}),
+			'precio' : forms.TextInput(attrs={'readonly': '', 'class': 'form-control'}),
+			'fechaDeRegistro': forms.TextInput(attrs={'readonly': '', 'class': 'form-control'})
+		}
 			

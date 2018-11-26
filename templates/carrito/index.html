@@ -1,0 +1,48 @@
+{% extends 'base/index.html' %}
+{% load staticfiles %}
+}
+{% block content %}
+
+
+<div class="bs-component">
+            	<table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+<script>
+	total = 0
+</script>
+                  	{% for Carrito in carrito %}
+                  	{% if user.id != Carrito.usuario%}
+                  	<tr>
+                  		<td>{{Carrito.id}}</td>
+						<td>{{Carrito.nombreProducto}}</td>
+                      	<td>{{Carrito.precio}}</td>
+					</tr>
+<script>
+	total = total + {{Carrito.precio}}
+	//alert(total);
+</script>
+							
+							{% else %}
+							<h3>No tienes productos en el carrito</h3>
+							{% endif %}
+					          
+					          {% empty %}
+
+					           <p>No hay productos</p>
+					         {% endfor %}
+              </table>
+              <div class="total">
+              </div>
+            <a href="{% url 'Productos:nuevoRegistro' %}" class="btn btn-info">Comprar</a>
+            </div>
+<script>
+	$( ".total" ).append( "<h1>Total: <span class='text-secondary'>" + total + "</span></h1>" );
+</script>
+{% endblock%}

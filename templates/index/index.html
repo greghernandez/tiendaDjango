@@ -1,0 +1,53 @@
+{% extends 'base/index.html' %}
+{% load staticfiles %}
+}
+{% block content %}
+
+<div class="container">
+
+<!-- Categorías-->
+	<h1>Categorías</h1>
+
+{% for Categoria in categorias %}
+    <button class="btn">{{Categoria.nombre}}</button>
+{% empty %}
+<p>No hay productos</p>
+{% endfor %}
+
+<!-- Productos-->
+	<h1>Todos Nuestros Productos</h1>
+	<div class="row">
+	{% for Producto in productos %}
+		{% if Producto.cantidad >= 1 %}
+
+		<div class="col-md">
+		<div class="card">
+    		<div class="card-body">
+        		<h4 class="card-title">{{Producto.nombre}}</h4>
+        		<h6 class="card-subtitle mb-2 text-muted">${{Producto.precio}}</h6>
+        		<p class="card-text">{{Producto.caracteristicas}}</p>
+        		<p class="text-secondary">SKU {{Producto.codigo}}</p>
+        		<a href="{% url 'Productos:agregarCarrito' Producto.id %}" class="btn">Agregar al carrito</a>
+    		</div>
+		</div>
+		</div>
+
+		{% endif %}
+              <!--
+                  	<tr>
+                  		<td>{{Producto.id}}</td>
+						          <td>{{Producto.nombre}}</td>
+                      <td>{{Producto.precio}}</td> 
+                      <td>{{Producto.caracteristicas}}</td>  
+						          <td>{{Producto.codigo}}</td>
+						          <td>{{Producto.cantidad}}</td>
+                      <td><a href="{% url 'Productos:editarRegistro' Producto.id %}">Editar</a></td>
+                      <td><a href="{% url 'Productos:eliminarRegistro' Producto.id %}">Borrar</a></td>
+					           </tr>-->
+
+					          {% empty %}
+					           <p>No hay productos</p>
+	{% endfor %}
+	</div>
+</div>
+{% endblock%}

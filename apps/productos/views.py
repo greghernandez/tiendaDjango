@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic  import ListView
 from apps.productos.models import Producto, Categoria
-from apps.productos.forms import ProductoForm, CategoriaForm
+from apps.carrito.models import Carrito
+from apps.productos.forms import ProductoForm, CategoriaForm, ProductoCarritoForm
+import MySQLdb
 
 # Create your views here.
 
@@ -21,6 +23,7 @@ def categorias(request):
 class ViewProducto(ListView):
 	model =  Producto
 	template_name = 'productos/listado.html'
+
 
 def nuevoRegistro(request):
 	if request.method == 'POST':
@@ -85,3 +88,13 @@ def eliminarRegistroCat(request, idCategoria):
 	categoria = Categoria.objects.get(id = idCategoria)
 	categoria.delete()
 	return redirect('Productos:categorias');
+
+
+def agregarCarrito(request, idProducto):
+	prod = Producto.objects.get(id = idProducto)
+	user = request.user.id
+
+	a = Carrito(producto=idProducto, usuario= user, nombreProducto= prod.nombre ,cantidad = '1', precio = prod.precio)
+	a.save()
+	return redirect('/');
+	
