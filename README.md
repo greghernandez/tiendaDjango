@@ -3,4 +3,4 @@
 Usuario para poder comprar  
 #username: fulano
 
-#password: detal
+#password: 123
